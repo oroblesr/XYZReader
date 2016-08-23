@@ -9,4 +9,12 @@
     <dimen name="fab_margin">24dp</dimen>
     <dimen name="fab_resting_elevation">6dp</dimen>
 
+    <!-- Title -->
+    <dimen name="padding_title">8dp</dimen>
+
+    <!-- Text -->
+    <dimen name="padding_text">8dp</dimen>
+
+
+
 </resources>

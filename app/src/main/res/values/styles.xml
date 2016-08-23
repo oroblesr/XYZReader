@@ -21,11 +21,53 @@
         <item name="colorPrimary">@color/deep_orange_500</item>
         <item name="colorPrimaryDark">@color/deep_orange_700</item>
         <item name="colorAccent">@color/teal_a100</item>
+    </style>
+
+
+    <style name="Theme.Bacon.Title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+        <item name="android:textColor">?attr/colorPrimaryDark</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">@dimen/padding_title</item>
+    </style>
+
+
+    <style name="Theme.Bacon.Subtitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:padding">@dimen/padding_text</item>
+    </style>
+
+    <style name="Theme.Bacon.Text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:padding">@dimen/padding_text</item>
+    </style>
+
+
+    <style name="Theme.Bacon.ImageText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:padding">@dimen/padding_text</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textColor">@color/deep_orange_50</item>
 
     </style>
+
 
     <style name="Theme.Bacon.Detail"  parent="@style/Theme.AppCompat.Light.NoActionBar">
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
+
 
 </resources>
