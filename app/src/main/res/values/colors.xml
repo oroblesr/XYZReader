@@ -22,6 +22,7 @@
     <color name="deep_orange_500">#FF5722</color>
     <color name="deep_orange_700">#E64A19</color>
     <color name="teal_a100">#A7FFEB</color>
+    <color name="white">#FFFFFF</color>
 
     <color name="theme_primary">#04561A</color>
     <color name="theme_primary_dark">#04561A</color>
