@@ -16,13 +16,15 @@
 -->
 
 <resources>
-    <style name="Theme.Bacon" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.Base" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/deep_orange_500</item>
         <item name="colorPrimaryDark">@color/deep_orange_700</item>
         <item name="colorAccent">@color/light_blue_a400</item>
     </style>
 
+    <style name="Theme.Bacon" parent="Theme.Base"></style>
+    <style name="Theme.Bacon.Detail"  parent="Theme.Base"></style>
 
     <style name="Theme.Bacon.Title">
         <item name="android:layout_width">wrap_content</item>
@@ -66,9 +68,7 @@
     </style>
 
 
-    <style name="Theme.Bacon.Detail"  parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <item name="android:statusBarColor">@android:color/transparent</item>
-    </style>
+
 
 
 </resources>

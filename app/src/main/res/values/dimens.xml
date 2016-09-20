@@ -15,7 +15,9 @@
 
     <!-- Text -->
     <dimen name="padding_text">8dp</dimen>
-
+    <dimen name="app_bar_height">256dp</dimen>
+    <dimen name="article_keylines">72dp</dimen>
+    <dimen name="start_keylines">16dp</dimen>
 
 
 </resources>
