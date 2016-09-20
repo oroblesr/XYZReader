@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.graphics.Palette;
 import android.text.Html;
+import android.text.Spanned;
 import android.text.format.DateUtils;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
@@ -55,6 +56,8 @@ public class ArticleDetailFragment extends Fragment implements
     private int mScrollY;
     private boolean mIsCard = false;
     private int mStatusBarFullOpacityBottom;
+
+    private String shareText = "";
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -130,18 +133,20 @@ public class ArticleDetailFragment extends Fragment implements
 
         mStatusBarColorDrawable = new ColorDrawable(0);
 
+
+        bindViews();
+        updateStatusBar();
+
         mRootView.findViewById(R.id.share_fab).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(getActivity())
                         .setType("text/plain")
-                        .setText("Some sample text") // TODO set correct text
+                        .setText(shareText)
                         .getIntent(), getString(R.string.action_share)));
             }
         });
 
-        bindViews();
-        updateStatusBar();
         return mRootView;
     }
 
@@ -189,16 +194,28 @@ public class ArticleDetailFragment extends Fragment implements
             mRootView.setAlpha(0);
             mRootView.setVisibility(View.VISIBLE);
             mRootView.animate().alpha(1);
-            titleView.setText(mCursor.getString(ArticleLoader.Query.TITLE));
-            bylineView.setText(Html.fromHtml(
+            String titleText = "";
+            Spanned bylineText;
+            Spanned bodyText;
+
+            titleText = mCursor.getString(ArticleLoader.Query.TITLE);
+            bylineText = Html.fromHtml(
                     DateUtils.getRelativeTimeSpanString(
                             mCursor.getLong(ArticleLoader.Query.PUBLISHED_DATE),
                             System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
                             DateUtils.FORMAT_ABBREV_ALL).toString()
-                            + " by <font color='#ffffff'>"
-                            + mCursor.getString(ArticleLoader.Query.AUTHOR)
-                            + "</font>"));
-            bodyView.setText(Html.fromHtml(mCursor.getString(ArticleLoader.Query.BODY)));
+                            + " by " + mCursor.getString(ArticleLoader.Query.AUTHOR));
+
+            bodyText = Html.fromHtml(mCursor.getString(ArticleLoader.Query.BODY));
+
+            titleView.setText(titleText);
+            bylineView.setText(bylineText);
+            bodyView.setText(bodyText);
+            bodyView.setClickable(true);
+            bodyView.setMovementMethod (LinkMovementMethod.getInstance());
+
+            shareText = titleText + "\n" + bylineText + "\n\n" + bodyText;
+
             ImageLoaderHelper.getInstance(getActivity()).getImageLoader()
                     .get(mCursor.getString(ArticleLoader.Query.PHOTO_URL), new ImageLoader.ImageListener() {
                         @Override

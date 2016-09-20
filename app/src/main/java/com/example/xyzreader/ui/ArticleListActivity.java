@@ -16,7 +16,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
+import android.text.Spanned;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
@@ -153,29 +156,44 @@ public class ArticleListActivity extends AppCompatActivity implements
         public void onBindViewHolder(ViewHolder holder, int position) {
             mCursor.moveToPosition(position);
 
+
+            String titleText = "";
+            Spanned subtitleText;
+            String bodyText = "";
+
+            titleText = mCursor.getString(ArticleLoader.Query.TITLE);
+            subtitleText = Html.fromHtml(
+                    DateUtils.getRelativeTimeSpanString(
+                            mCursor.getLong(ArticleLoader.Query.PUBLISHED_DATE),
+                            System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
+                            DateUtils.FORMAT_ABBREV_ALL).toString()
+                            + " by " + mCursor.getString(ArticleLoader.Query.AUTHOR));
+
+            bodyText = String.valueOf(Html.fromHtml(mCursor.getString(ArticleLoader.Query.BODY)));
+
+            holder.titleView.setText(titleText);
+            holder.subtitleView.setText(subtitleText);
+            final String shareText = titleText + "\n" + subtitleText + "\n\n" + bodyText;
+
             holder.shareButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     startActivity(Intent.createChooser(ShareCompat.IntentBuilder
                             .from(ArticleListActivity.this)
                             .setType("text/plain")
-                            .setText("Some sample text") // TODO set correct text
+                            .setText(shareText)
                             .getIntent(), getString(R.string.action_share)));
                 }
             });
 
-            holder.titleView.setText(mCursor.getString(ArticleLoader.Query.TITLE));
-            holder.subtitleView.setText(
-                    DateUtils.getRelativeTimeSpanString(
-                            mCursor.getLong(ArticleLoader.Query.PUBLISHED_DATE),
-                            System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
-                            DateUtils.FORMAT_ABBREV_ALL).toString()
-                            + " by "
-                            + mCursor.getString(ArticleLoader.Query.AUTHOR));
+
             holder.thumbnailView.setImageUrl(
                     mCursor.getString(ArticleLoader.Query.THUMB_URL),
                     ImageLoaderHelper.getInstance(ArticleListActivity.this).getImageLoader());
             holder.thumbnailView.setAspectRatio(mCursor.getFloat(ArticleLoader.Query.ASPECT_RATIO));
+
+
+
         }
 
         @Override
