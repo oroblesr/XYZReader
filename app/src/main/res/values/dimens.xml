@@ -19,5 +19,10 @@
     <dimen name="article_keylines">72dp</dimen>
     <dimen name="start_keylines">16dp</dimen>
 
+    <!-- Landscape -->
+    <dimen name="title_size">100dp</dimen>
+    <!-- space_fab = title_size - 28  -->
+    <dimen name="space_fab">72dp</dimen>
+
 
 </resources>
