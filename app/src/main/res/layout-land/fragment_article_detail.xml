@@ -85,6 +85,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/title_size"
                             android:orientation="vertical"
+                            android:gravity="center_vertical"
                             android:background="@color/deep_orange_500">
 
                             <TextView
@@ -93,7 +94,9 @@
 
                             <TextView
                                 android:id="@+id/article_byline"
-                                style="@style/Theme.Bacon.Subtitle" />
+                                style="@style/Theme.Bacon.Subtitle"
+                                android:ellipsize="end"
+                                android:maxLines="1" />
 
 
 
@@ -123,6 +126,7 @@
                         <TextView
                             android:id="@+id/article_body"
                             android:layout_below="@id/landscape_title"
+                            android:layout_marginTop="@dimen/space_between_content"
                             style="@style/Theme.Bacon.Text" />
 
 

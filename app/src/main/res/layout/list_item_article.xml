@@ -36,6 +36,7 @@
             <TextView
                 android:id="@+id/article_subtitle"
                 style="@style/Theme.Bacon.ImageText"
+
                 android:layout_gravity="center_horizontal|bottom" />
 
 
@@ -48,18 +49,20 @@
 
             <TextView
                 android:id="@+id/article_title"
-                style="@style/Theme.Bacon.Subtitle"
+                style="@style/Theme.Bacon.Text"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:layout_width="0dp"
+                android:ellipsize="end"
                 android:maxLines="4" />
 
             <ImageButton
                 android:id="@+id/share_button"
                 style="?android:attr/borderlessButtonStyle"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
+                android:layout_width="@dimen/share_button_dimen"
+                android:layout_height="@dimen/share_button_dimen"
                 android:layout_gravity="bottom|end"
-                android:src="@drawable/ic_share_black_24dp"
+                app:srcCompat="@drawable/ic_share_black_24dp"
                 android:tint="@color/deep_orange_500" />
 
         </LinearLayout>

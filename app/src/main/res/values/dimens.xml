@@ -10,19 +10,20 @@
     <dimen name="fab_resting_elevation">6dp</dimen>
     <dimen name="space_detail_height">0dp</dimen>
     <dimen name="card_width">300dp</dimen>
-    <!-- Title -->
-    <dimen name="padding_title">8dp</dimen>
 
     <!-- Text -->
-    <dimen name="padding_text">8dp</dimen>
+    <dimen name="padding_text">16dp</dimen>
     <dimen name="app_bar_height">256dp</dimen>
     <dimen name="article_keylines">72dp</dimen>
     <dimen name="start_keylines">16dp</dimen>
 
     <!-- Landscape -->
     <dimen name="title_size">100dp</dimen>
-    <!-- space_fab = title_size - 28  -->
+    <dimen name="share_button_dimen">56dp</dimen>
+    <!-- space_fab = title_size - share_button_dimen/2  -->
     <dimen name="space_fab">72dp</dimen>
+    <dimen name="space_between_content">8dp</dimen>
+
 
 
 </resources>
