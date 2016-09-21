@@ -12,6 +12,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -59,8 +60,10 @@ public class ArticleDetailFragment extends Fragment implements
     private int mScrollY;
     private boolean mIsCard = false;
     private int mStatusBarFullOpacityBottom;
+    private CollapsingToolbarLayout collapsingToolbar;
 
     private String shareText = "";
+    private String titleText = " ";
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -116,8 +119,15 @@ public class ArticleDetailFragment extends Fragment implements
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        CollapsingToolbarLayout collapsingToolbar =
+
+        collapsingToolbar =
                 (CollapsingToolbarLayout) mRootView.findViewById(R.id.collapsing_toolbar);
+        collapsingToolbar.setTitle(" ");
+
+
+        AppBarLayout appBarLayout = (AppBarLayout) mRootView.findViewById(R.id.appbar);
+
+
 
 
 //        mDrawInsetsFrameLayout = (DrawInsetsFrameLayout)
@@ -157,6 +167,28 @@ public class ArticleDetailFragment extends Fragment implements
                         .setType("text/plain")
                         .setText(shareText)
                         .getIntent(), getString(R.string.action_share)));
+            }
+        });
+
+
+        // Credit to steven274 this listener:
+        // http://stackoverflow.com/questions/31662416/show-collapsingtoolbarlayout-title-only-when-collapsed
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            boolean isShow = false;
+            int scrollRange = -1;
+
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.getTotalScrollRange();
+                }
+                if (scrollRange + verticalOffset == 0) {
+                    collapsingToolbar.setTitle(titleText);
+                    isShow = true;
+                } else if(isShow) {
+                    collapsingToolbar.setTitle(" ");
+                    isShow = false;
+                }
             }
         });
 
@@ -207,7 +239,7 @@ public class ArticleDetailFragment extends Fragment implements
             mRootView.setAlpha(0);
             mRootView.setVisibility(View.VISIBLE);
             mRootView.animate().alpha(1);
-            String titleText = "";
+
             Spanned bylineText;
             Spanned bodyText;
 
