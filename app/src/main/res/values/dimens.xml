@@ -6,7 +6,7 @@
 
     <dimen name="fab_elevation">2dp</dimen>
     <dimen name="fab_press_translation_z">6dp</dimen>
-    <dimen name="fab_margin">24dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
     <dimen name="fab_resting_elevation">6dp</dimen>
     <dimen name="space_detail_height">0dp</dimen>
     <dimen name="card_width">300dp</dimen>
@@ -22,7 +22,7 @@
     <dimen name="share_button_dimen">56dp</dimen>
     <!-- space_fab = title_size - share_button_dimen/2  -->
     <dimen name="space_fab">72dp</dimen>
-    <dimen name="space_between_content">8dp</dimen>
+    <dimen name="space_between_content">16dp</dimen>
 
 
 

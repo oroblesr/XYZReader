@@ -13,7 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">>
+        android:orientation="vertical">
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,8 +24,7 @@
                 android:id="@+id/thumbnail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/photo_placeholder"
-                android:transitionName="@string/image_transition"/>
+                android:background="@color/photo_placeholder"/>
 
             <View
                 android:layout_width="match_parent"
@@ -62,6 +61,7 @@
                 android:layout_width="@dimen/share_button_dimen"
                 android:layout_height="@dimen/share_button_dimen"
                 android:layout_gravity="bottom|end"
+                android:contentDescription="@string/share_button"
                 app:srcCompat="@drawable/ic_share_black_24dp"
                 android:tint="@color/deep_orange_500" />
 
