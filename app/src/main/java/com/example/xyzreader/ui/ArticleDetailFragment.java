@@ -91,7 +91,6 @@ public class ArticleDetailFragment extends Fragment implements
         mStatusBarFullOpacityBottom = getResources().getDimensionPixelSize(
                 R.dimen.detail_card_top_margin);
 
-        setHasOptionsMenu(true);
     }
 
     public ArticleDetailActivity getActivityCast() {
@@ -106,7 +105,7 @@ public class ArticleDetailFragment extends Fragment implements
         // the fragment's onCreate may cause the same LoaderManager to be dealt to multiple
         // fragments because their mIndex is -1 (haven't been added to the activity yet). Thus,
         // we do this in onActivityCreated.
-        getLoaderManager().initLoader(0, null, this);
+       getLoaderManager().initLoader(0, null, this);
     }
 
     @Override
@@ -126,6 +125,26 @@ public class ArticleDetailFragment extends Fragment implements
 
         AppBarLayout appBarLayout = (AppBarLayout) mRootView.findViewById(R.id.appbar);
 
+        // Credit to steven274 this listener:
+        // http://stackoverflow.com/questions/31662416/show-collapsingtoolbarlayout-title-only-when-collapsed
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            boolean isShow = false;
+            int scrollRange = -1;
+
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.getTotalScrollRange();
+                }
+                if (scrollRange + verticalOffset == 0) {
+                    collapsingToolbar.setTitle(titleText);
+                    isShow = true;
+                } else if(isShow) {
+                    collapsingToolbar.setTitle(" ");
+                    isShow = false;
+                }
+            }
+        });
 
 
 
@@ -152,7 +171,7 @@ public class ArticleDetailFragment extends Fragment implements
         mPhotoView = (ImageView) mRootView.findViewById(R.id.photo);
         //mPhotoContainerView = mRootView.findViewById(R.id.photo_container);
 
-        mStatusBarColorDrawable = new ColorDrawable(0);
+       // mStatusBarColorDrawable = new ColorDrawable(0);
 
 
         bindViews();
@@ -170,26 +189,7 @@ public class ArticleDetailFragment extends Fragment implements
         });
 
 
-        // Credit to steven274 this listener:
-        // http://stackoverflow.com/questions/31662416/show-collapsingtoolbarlayout-title-only-when-collapsed
-        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            boolean isShow = false;
-            int scrollRange = -1;
 
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                if (scrollRange == -1) {
-                    scrollRange = appBarLayout.getTotalScrollRange();
-                }
-                if (scrollRange + verticalOffset == 0) {
-                    collapsingToolbar.setTitle(titleText);
-                    isShow = true;
-                } else if(isShow) {
-                    collapsingToolbar.setTitle(" ");
-                    isShow = false;
-                }
-            }
-        });
 
         return mRootView;
     }
@@ -232,7 +232,7 @@ public class ArticleDetailFragment extends Fragment implements
         TextView bylineView = (TextView) mRootView.findViewById(R.id.article_byline);
         bylineView.setMovementMethod(new LinkMovementMethod());
         TextView bodyView = (TextView) mRootView.findViewById(R.id.article_body);
-        bodyView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Rosario-Regular.ttf"));
+       // bodyView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Rosario-Regular.ttf"));
 
         if (mCursor != null) {
             mRootView.setAlpha(0);
@@ -281,10 +281,11 @@ public class ArticleDetailFragment extends Fragment implements
                         }
                     });
         } else {
-            mRootView.setVisibility(View.GONE);
-            titleView.setText("N/A");
-            bylineView.setText("N/A" );
-            bodyView.setText("N/A");
+            mRootView.setVisibility(View.INVISIBLE);
+            //mRootView.setVisibility(View.GONE);
+            titleView.setText(" ");
+            bylineView.setText(" " );
+            bodyView.setText(" ");
         }
     }
 
