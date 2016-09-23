@@ -1,5 +1,5 @@
 <resources>
     <!-- detail -->
     <dimen name="space_detail_height">170dp</dimen>
-    <dimen name="card_width">500dp</dimen>
+
 </resources>

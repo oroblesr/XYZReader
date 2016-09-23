@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
+        android:elevation="@dimen/app_bar_elevation"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
 
@@ -70,7 +71,8 @@
                     android:id="@+id/detail_card"
                     android:layout_height="wrap_content"
                     android:layout_width="@dimen/card_width"
-                    android:layout_gravity="center_horizontal">
+                    android:layout_gravity="center_horizontal"
+                    android:elevation="@dimen/cardview_default_elevation">
 
                     <RelativeLayout
                         android:layout_width="match_parent"

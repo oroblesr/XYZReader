@@ -6,6 +6,7 @@
     <item name="detail_body_line_spacing_multiplier" format="float" type="fraction">1.3</item>
     <dimen name="fab_margin">24dp</dimen>
     <dimen name="space_detail_height">170dp</dimen>
+    <dimen name="card_width">600dp</dimen>
 
     <!-- Text -->
     <dimen name="padding_text">24dp</dimen>
