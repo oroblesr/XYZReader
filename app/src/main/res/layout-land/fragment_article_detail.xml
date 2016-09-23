@@ -72,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="@dimen/card_width"
                     android:layout_gravity="center_horizontal"
-                    android:elevation="@dimen/cardview_default_elevation">
+                    app:cardElevation="@dimen/cardview_default_elevation">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
