@@ -145,9 +145,9 @@ public class ArticleListActivity extends AppCompatActivity implements
             mCursor.moveToPosition(position);
 
 
-            String titleText = "";
+            String titleText;
             Spanned subtitleText;
-            String bodyText = "";
+            String bodyText;
 
             titleText = mCursor.getString(ArticleLoader.Query.TITLE);
             subtitleText = Html.fromHtml(

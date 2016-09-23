@@ -115,8 +115,8 @@ public class ArticleDetailFragment extends Fragment implements
         mRootView = inflater.inflate(R.layout.fragment_article_detail, container, false);
 
         Toolbar toolbar = (Toolbar) mRootView.findViewById(R.id.toolbar);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        AppCompatActivity appCompatActivity = ((AppCompatActivity)getActivity());
+        appCompatActivity.setSupportActionBar(toolbar);
 
 
         collapsingToolbar =
@@ -156,7 +156,7 @@ public class ArticleDetailFragment extends Fragment implements
 
 
         bindViews();
-        updateStatusBar();
+        //updateStatusBar();
 
 
         mRootView.findViewById(R.id.share_fab).setOnClickListener(new View.OnClickListener() {
@@ -193,7 +193,7 @@ public class ArticleDetailFragment extends Fragment implements
 
         return mRootView;
     }
-
+/*
     private void updateStatusBar() {
         int color = 0;
         if (mPhotoView != null && mTopInset != 0 && mScrollY > 0) {
@@ -206,9 +206,9 @@ public class ArticleDetailFragment extends Fragment implements
                     (int) (Color.blue(mMutedColor) * 0.9));
         }
         mStatusBarColorDrawable.setColor(color);
-//        mDrawInsetsFrameLayout.setInsetBackground(mStatusBarColorDrawable);
-    }
-
+        mDrawInsetsFrameLayout.setInsetBackground(mStatusBarColorDrawable);
+    }*/
+/*
     static float progress(float v, float min, float max) {
         return constrain((v - min) / (max - min), 0, 1);
     }
@@ -221,7 +221,7 @@ public class ArticleDetailFragment extends Fragment implements
         } else {
             return val;
         }
-    }
+    }*/
 
     private void bindViews() {
         if (mRootView == null) {
@@ -266,12 +266,12 @@ public class ArticleDetailFragment extends Fragment implements
                         public void onResponse(ImageLoader.ImageContainer imageContainer, boolean b) {
                             Bitmap bitmap = imageContainer.getBitmap();
                             if (bitmap != null) {
-                                Palette p = Palette.generate(bitmap, 12);
-                                mMutedColor = p.getDarkMutedColor(0xFF333333);
+                                //Palette p = Palette.generate(bitmap, 12);
+                                //mMutedColor = p.getDarkMutedColor(0xFF333333);
                                 mPhotoView.setImageBitmap(imageContainer.getBitmap());
 //                                mRootView.findViewById(R.id.meta_bar)
 //                                        .setBackgroundColor(mMutedColor);
-                                updateStatusBar();
+                                //updateStatusBar();
                             }
                         }
 
@@ -328,4 +328,6 @@ public class ArticleDetailFragment extends Fragment implements
                 ? (int) mPhotoContainerView.getTranslationY() + mPhotoView.getHeight() - mScrollY
                 : mPhotoView.getHeight() - mScrollY;
     }*/
+
+
 }
